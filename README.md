@@ -1,8 +1,11 @@
-# React + Vite
+# React + Vite + Tailwindcss
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Lista de Mandado
 
-Currently, two official plugins are available:
+**Este proyecto fue una experiencia que abarcó todo un día, desde aproximadamente las 2:00 PM hasta las 1:30 AM.**
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Lecciones Aprendidas
+
+*Este proyecto fue una gran oportunidad de aprendizaje. Aunque actualmente está en un estado algo desordenado, tengo la certeza de que lo mejoraré con el tiempo. En definitiva, lo creé para facilitar mis idas al mercado.*
+
+*Ahora, en lugar de llevar una libretita, puedo gestionar mi lista de mandado desde mi página web en el celular. Además, gracias al uso de localStorage, los datos se mantienen almacenados para futuros usos.*
