@@ -52,6 +52,11 @@ export default function ShowLista({ lista, setLista, setVisible, visible }) {
   );
 
   const handleCheckboxChange = (itemId) => {
+
+    // Verifica si la lista está vacía
+    if (lista.length === 0) {
+      return; // Si la lista está vacía, no hagas nada
+    }
     // Busca el elemento en la lista basado en su ID
     const updatedList = lista.map(item => {
       if (item.id === itemId) {
@@ -63,11 +68,11 @@ export default function ShowLista({ lista, setLista, setVisible, visible }) {
       }
       return item;
     });
-  
+
     // Actualiza el estado de la lista con la nueva lista modificada
     setLista(updatedList);
   };
-  
+
 
 
   const [casillas, setCasillas] = useState(false);
@@ -85,7 +90,9 @@ export default function ShowLista({ lista, setLista, setVisible, visible }) {
           lista={lista}
           setLista={setLista}
           setVisible={setVisible}
-          editItemId={editItemId} // Pasa el ID del elemento a editar al formulario
+          editItemId={editItemId}
+          setEditItemId={setEditItemId}
+           // Pasa el ID del elemento a editar al formulario
         />
       )}
 
@@ -98,7 +105,7 @@ export default function ShowLista({ lista, setLista, setVisible, visible }) {
 
 
           <div className=' overflow-y-auto  bg-indigo-500'
-            style={{ height: "500px" }}
+            style={{ height: "200px" }}
           >
             <SwipeableList>
               {lista.map((item) => (
@@ -108,8 +115,8 @@ export default function ShowLista({ lista, setLista, setVisible, visible }) {
                   trailingActions={trailingActions(item.id)}
                 >
                   <div className='grid grid-cols-3  text-xl font-black text-white mb-2 w-80 items-center  justify-items-center mx-auto   bg-indigo-400 '>
-                    <p className='text-center py-3'>{item.articulo}</p>
-                    <p className='text-center'>{formatCurency(item.precio)}</p>
+                    <p className='text-center  py-1'>{item.articulo}</p>
+                    <p className='text-center  py-1'>{formatCurency(item.precio)}</p>
                     <input
                       type="checkbox"
                       style={{ width: "20px", height: "20px" }}
@@ -126,13 +133,14 @@ export default function ShowLista({ lista, setLista, setVisible, visible }) {
       ) : (
         <p className=' text-center font-black'>No hay elementos en la lista.</p>
       )}
-      {casillas && (
+      {casillas && lista.length > 0 && (
         <>
-          <div className=' grid grid-cols-1 text-white place-items-center text-3xl font-black bg-green-500 h-28'>
+          <div className=' grid grid-cols-1 text-white place-items-center text-3xl font-black bg-green-500 h-20'>
             <p>¡¡Lista Completa!!</p>
           </div>
         </>
       )}
+
     </>
   )
 }

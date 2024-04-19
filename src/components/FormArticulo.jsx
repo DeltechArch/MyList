@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { v4 as uuidv4 } from 'uuid';
 
-export default function FormArticulo({lista,setLista, setVisible,editItemId }) {
+export default function FormArticulo({lista,setLista, setVisible,editItemId,setEditItemId }) {
   const [articulo, setArticulo] = useState('');
   const [precio, setPrecio] = useState('');
 
@@ -56,6 +56,7 @@ export default function FormArticulo({lista,setLista, setVisible,editItemId }) {
     setArticulo('');
     setPrecio('');
     setVisible(false);
+    setEditItemId(null)
   };
 
   const handleCancel = () => {
@@ -63,6 +64,7 @@ export default function FormArticulo({lista,setLista, setVisible,editItemId }) {
     setArticulo('');
     setPrecio('');
     setVisible(false);
+    setEditItemId(null)
   };
 
 
@@ -104,7 +106,7 @@ export default function FormArticulo({lista,setLista, setVisible,editItemId }) {
 
 
         <div className="grid grid-cols-1 justify-items-center mt-2">
-          <button type="submit" className="bg-indigo-600 w-72 h-11 text-white">Add To List</button>
+          <button type="submit" className="bg-indigo-600 w-72 h-11 text-white">{editItemId ? "Editar" : 'Agregar  a Lista' }</button>
         </div>
         <div className="grid grid-cols-1 justify-items-center mt-2">
           <button type="button" onClick={handleCancel} className="bg-red-400 w-72 h-11 text-white">Cancelar</button>
