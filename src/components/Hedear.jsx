@@ -17,7 +17,7 @@ export default function Hedear({ lista, setLista }) {
       <button
         type='button'
         onClick={handleVaciarLocal}
-        disabled={lista.length <= 1}
+        disabled={lista.length <= 0}
         className={`bg-red-500 text-white m-2 rounded-lg w-fit p-2 ${lista.length < 1 ? 'opacity-10 cursor-not-allowed' : ''}`}>Reiniciar Lista</button>
     </div >
   )

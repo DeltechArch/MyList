@@ -28,6 +28,7 @@ function App() {
      setLista={setLista}
      />
      <BotonAdd
+     lista={lista}
      setLista={setLista}
      setVisible={setVisible}
      visible={visible}
