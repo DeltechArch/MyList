@@ -14,7 +14,12 @@ import { useState, useEffect } from 'react';
 
 
 
-export default function ShowLista({ lista, setLista, setVisible, visible }) {
+
+
+export default function ShowLista({ lista, setLista, setVisible, visible,}) {
+
+  
+ 
 
   const [editItemId, setEditItemId] = useState(null); // Estado para almacenar el ID del elemento a editar
 
@@ -104,7 +109,7 @@ export default function ShowLista({ lista, setLista, setVisible, visible }) {
 
 
 
-          <div className=' overflow-y-auto  bg-indigo-700'
+          <div className=' overflow-y-auto border-y-8 border-black  bg-indigo-700'
             style={{ height: "200px" }}
           >
             <SwipeableList>
@@ -114,17 +119,27 @@ export default function ShowLista({ lista, setLista, setVisible, visible }) {
                   leadingActions={leadingActions(item.id)}
                   trailingActions={trailingActions(item.id)}
                 >
-                  <div className='grid grid-cols-4 text-xl font-semibold text-black mb-2 w-80 items-center justify-items-center mx-auto bg-gray-200 border border-gray-300 rounded-lg shadow-md'>
-                    <p className='text-center  py-1'>{item.articulo}</p>
-                    <p className='text-center  py-1'>{formatCurency(item.precio)}</p>
-                    <input
-                      id={`checkbox-${item.id}`}
-                      type="checkbox"
-                      style={{ width: "20px", height: "20px" }}
-                      checked={item.checkbox}
-                      onChange={() => handleCheckboxChange(item.id)}
-                    />
-                    <label htmlFor={`checkbox-${item.id}`}>{index + 1}</label>
+                  <div className='grid grid-cols-3 text-xl font-semibold text-black mb-2 w-80 items-center justify-items-center mx-auto bg-gray-200 border border-gray-300 rounded-lg shadow-md'>
+                 
+
+                      <p className='text-center  py-1'>{item.articulo}</p>
+                      <p className='text-center  py-1'>{formatCurency(item.precio)}</p>
+                   
+
+                  
+                    <div className='grid grid-cols-1 text-center'>
+                       <label htmlFor={`checkbox-${item.id}`}>{index + 1}</label>
+                      <input
+                        id={`checkbox-${item.id}`}
+                        type="checkbox"
+                        style={{ width: "20px", height: "20px" }}
+                        checked={item.checkbox}
+                        onChange={() => handleCheckboxChange(item.id)}
+                      />
+
+                    </div>
+
+
                   </div>
                 </SwipeableListItem>
               ))}

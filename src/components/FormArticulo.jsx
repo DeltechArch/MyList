@@ -71,7 +71,7 @@ export default function FormArticulo({lista,setLista, setVisible,editItemId,setE
   return (
     <>
       <form
-        className='block absolute top-40 left-0  w-full bg-indigo-400 py-10'
+        className='block absolute top-40 left-0  w-full bg-indigo-700 py-10'
         onSubmit={(e) => handleSubmit(e)}
         style={{ zIndex: 999 }}
       >
@@ -106,10 +106,10 @@ export default function FormArticulo({lista,setLista, setVisible,editItemId,setE
 
 
         <div className="grid grid-cols-1 justify-items-center mt-2">
-          <button type="submit" className="bg-indigo-600 w-72 h-11 text-white">{editItemId ? "Editar" : 'Agregar  a Lista' }</button>
+          <button type="submit" className="bg-indigo-700 border border-white w-72 h-11 text-white">{editItemId ? "Editar" : 'Agregar  a Lista' }</button>
         </div>
         <div className="grid grid-cols-1 justify-items-center mt-2">
-          <button type="button" onClick={handleCancel} className="bg-red-400 w-72 h-11 text-white">Cancelar</button>
+          <button type="button" onClick={handleCancel} className="bg-red-700 border border-white w-72 h-11 text-white">Cancelar</button>
         </div>
       </form>
     </>
