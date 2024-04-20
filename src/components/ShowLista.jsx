@@ -92,7 +92,7 @@ export default function ShowLista({ lista, setLista, setVisible, visible }) {
           setVisible={setVisible}
           editItemId={editItemId}
           setEditItemId={setEditItemId}
-           // Pasa el ID del elemento a editar al formulario
+        // Pasa el ID del elemento a editar al formulario
         />
       )}
 
@@ -104,25 +104,27 @@ export default function ShowLista({ lista, setLista, setVisible, visible }) {
 
 
 
-          <div className=' overflow-y-auto  bg-indigo-500'
+          <div className=' overflow-y-auto  bg-indigo-700'
             style={{ height: "200px" }}
           >
             <SwipeableList>
-              {lista.map((item) => (
+              {lista.map((item, index) => (
                 <SwipeableListItem
                   key={item.id}
                   leadingActions={leadingActions(item.id)}
                   trailingActions={trailingActions(item.id)}
                 >
-                  <div className='grid grid-cols-3  text-xl font-black text-white mb-2 w-80 items-center  justify-items-center mx-auto   bg-indigo-400 '>
+                  <div className='grid grid-cols-4 text-xl font-semibold text-black mb-2 w-80 items-center justify-items-center mx-auto bg-gray-200 border border-gray-300 rounded-lg shadow-md'>
                     <p className='text-center  py-1'>{item.articulo}</p>
                     <p className='text-center  py-1'>{formatCurency(item.precio)}</p>
                     <input
+                      id={`checkbox-${item.id}`}
                       type="checkbox"
                       style={{ width: "20px", height: "20px" }}
                       checked={item.checkbox}
                       onChange={() => handleCheckboxChange(item.id)}
                     />
+                    <label htmlFor={`checkbox-${item.id}`}>{index + 1}</label>
                   </div>
                 </SwipeableListItem>
               ))}
@@ -135,8 +137,8 @@ export default function ShowLista({ lista, setLista, setVisible, visible }) {
       )}
       {casillas && lista.length > 0 && (
         <>
-          <div className=' grid grid-cols-1 text-white place-items-center text-3xl font-black bg-green-500 h-20'>
-            <p>¡¡Lista Completa!!</p>
+          <div className='grid grid-cols-1 text-black place-items-center text-3xl font-black bg-green-500 h-20'>
+            <p className="text-shadow">¡¡Lista Completa!!</p>
           </div>
         </>
       )}
