@@ -110,7 +110,7 @@ export default function ShowLista({ lista, setLista, setVisible, visible,}) {
 
 
           <div className=' overflow-y-auto border-y-8 border-black  bg-indigo-700'
-            style={{ height: "200px" }}
+            style={{ height: "280px" }}
           >
             <SwipeableList>
               {lista.map((item, index) => (
