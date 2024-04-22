@@ -7,7 +7,7 @@ export default function DisplayTotal({lista}) {
 
  return (
   <div
-   className='fixed bottom-0 left-0 w-full bg-black text-white text-2xl h-20 grid grid-cols-2 items-center justify-items-center p-2 font-black'>
+   className='fixed bottom-0 left-0 w-full bg-black text-white text-2xl h-20  grid grid-cols-2 items-center justify-items-center p-2 font-black'>
    <p>Total a Pagar</p>
    <p>{ formatCurency(total)}</p>
 

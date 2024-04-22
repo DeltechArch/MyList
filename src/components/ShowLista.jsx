@@ -110,7 +110,7 @@ export default function ShowLista({ lista, setLista, setVisible, visible,}) {
 
 
           <div className=' overflow-y-auto border-y-8 border-black  bg-indigo-700'
-            style={{ height: "280px" }}
+            style={{ maxHeight: "280px" }}
           >
             <SwipeableList>
               {lista.map((item, index) => (
@@ -152,7 +152,7 @@ export default function ShowLista({ lista, setLista, setVisible, visible,}) {
       )}
       {casillas && lista.length > 0 && (
         <>
-          <div className='grid grid-cols-1 text-black place-items-center text-3xl font-black bg-green-500 h-20'>
+          <div className='grid grid-cols-1 text-black place-items-center text-3xl mb-20 font-black bg-green-500 h-20'>
             <p className="text-shadow">¡¡Lista Completa!!</p>
           </div>
         </>
