@@ -6,11 +6,10 @@ export default function FormArticulo({lista,setLista, setVisible,editItemId,setE
   const [precio, setPrecio] = useState('');
 
   useEffect(() => {
-    // Verificar si hay un ID de elemento para editar
+    
     if (editItemId !== null && lista) {
-      // Encuentra el elemento en la lista basado en el ID
       const itemToEdit = lista.find(item => item.id === editItemId);
-      // Si se encuentra el elemento, actualiza los estados del formulario con sus valores
+     
       if (itemToEdit) {
         setArticulo(itemToEdit.articulo);
         setPrecio(itemToEdit.precio.toString());
@@ -20,7 +19,7 @@ export default function FormArticulo({lista,setLista, setVisible,editItemId,setE
 
 
   const handleChange = (e) => {
-    setArticulo(e.target.value.slice(0, 8));
+    setArticulo(e.target.value.slice(0, 20));
   };
   const handleChangePrecio = (e) => {
     setPrecio(e.target.value.slice(0, 5))
@@ -29,7 +28,7 @@ export default function FormArticulo({lista,setLista, setVisible,editItemId,setE
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Crear el objeto del artículo con los valores del formulario
+   
     const nuevoArticulo = {
       id: editItemId || uuidv4(), // Usa el ID de edición o genera uno nuevo
       articulo: articulo,
@@ -70,48 +69,57 @@ export default function FormArticulo({lista,setLista, setVisible,editItemId,setE
 
   return (
     <>
-      <form
-        className='block absolute top-40 left-0  w-full bg-indigo-700 py-10'
-        onSubmit={(e) => handleSubmit(e)}
-        style={{ zIndex: 999 }}
-      >
-        <div className='grid grid-cols-1 w-72  justify-items-center mx-auto pb-4 '>
+<form
+  className="block absolute top-0 left-0 w-full h-full bg-indigo-700 p-5 rounded-none md:top-40 md:left-1/2 md:-translate-x-1/2 md:w-1/2  md:rounded-lg shadow-2xl md:h-auto"
+  onSubmit={(e) => handleSubmit(e)}
+  style={{ zIndex: 999 }}
+>
 
-          <label htmlFor="articulo" className='text-white text-lg font-black'>¿Qué Artículos comprarás?</label>
-          <input id='articulo'
-            type="text"
-            placeholder='ej. Barra de pan, Atún, etc.'
-            value={articulo}
-            onChange={handleChange}
-            required
+  <div className="grid grid-cols-1 w-full gap-4">
 
-          />
+    <label htmlFor="articulo" className="text-white text-lg font-bold">¿Qué Artículos comprarás?</label>
+    <input
+      id="articulo"
+      type="text"
+      placeholder="ej. Barra de pan, Atún, etc."
+      value={articulo}
+      onChange={handleChange}
+      className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+      required
+    />
 
-        </div>
+    <label htmlFor="precio" className="text-white text-lg font-bold">¿Cuál es su Precio?</label>
+    <input
+      id="precio"
+      type="number"
+      placeholder="Ingresa el precio"
+      value={precio}
+      onChange={handleChangePrecio}
+      className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+      required
+    />
+  </div>
 
-        <div className='grid grid-cols-1 w-72  justify-items-center  mx-auto pb-4  '>
+  <div className="grid grid-cols-1 justify-items-center mt-4">
+    <button
+      type="submit"
+      className="bg-indigo-600 hover:bg-indigo-500 border border-white w-full h-12 text-white font-semibold rounded-md transition duration-300"
+    >
+      {editItemId ? "Editar" : "Agregar a Lista"}
+    </button>
+  </div>
 
-          <label htmlFor="precio" className='text-white text-lg font-black'>¿Cual es su Precio?</label>
-          <input id='precio'
-            type="number"
-            placeholder='ingresa el precio'
-            value={precio}
-            onChange={handleChangePrecio}
-            required
+  <div className="grid grid-cols-1 justify-items-center mt-2">
+    <button
+      type="button"
+      onClick={handleCancel}
+      className="bg-red-600 hover:bg-red-500 border border-white w-full h-12 text-white font-semibold rounded-md transition duration-300"
+    >
+      Cancelar
+    </button>
+  </div>
+</form>
 
-          />
-
-        </div>
-
-
-
-        <div className="grid grid-cols-1 justify-items-center mt-2">
-          <button type="submit" className="bg-indigo-700 border border-white w-72 h-11 text-white">{editItemId ? "Editar" : 'Agregar  a Lista' }</button>
-        </div>
-        <div className="grid grid-cols-1 justify-items-center mt-2">
-          <button type="button" onClick={handleCancel} className="bg-red-700 border border-white w-72 h-11 text-white">Cancelar</button>
-        </div>
-      </form>
     </>
   )
 }
