@@ -10,16 +10,9 @@ import { formatCurency } from '../helpers';
 import FormArticulo from './FormArticulo';
 import { useState, useEffect } from 'react';
 
+//cambios
 
-
-
-
-
-
-export default function ShowLista({ lista, setLista, setVisible, visible,}) {
-
-  
- 
+export default function ShowLista({ lista, setLista, setVisible, visible, }) {
 
   const [editItemId, setEditItemId] = useState(null); // Estado para almacenar el ID del elemento a editar
 
@@ -28,20 +21,16 @@ export default function ShowLista({ lista, setLista, setVisible, visible,}) {
     setVisible(true); // Muestra el formulario de edición
   };
 
-
   const handleDeleteItem = (itemId) => {
-    // Filtra la lista para eliminar el elemento correspondiente al itemId
     const updatedList = lista.filter(item => item.id !== itemId);
-    // Actualiza el estado con la nueva lista
     setLista(updatedList);
   };
-
 
   const leadingActions = (itemId) => (
     <LeadingActions>
       <SwipeAction onClick={() => handleEditItem(itemId)}>
         Editar
-      </SwipeAction> {/* Cambiado para invocar handleEditItem con el itemId */}
+      </SwipeAction>
     </LeadingActions>
   );
 
@@ -57,28 +46,22 @@ export default function ShowLista({ lista, setLista, setVisible, visible,}) {
   );
 
   const handleCheckboxChange = (itemId) => {
-
-    // Verifica si la lista está vacía
     if (lista.length === 0) {
-      return; // Si la lista está vacía, no hagas nada
+      return;
     }
-    // Busca el elemento en la lista basado en su ID
+
     const updatedList = lista.map(item => {
       if (item.id === itemId) {
-        // Si es el elemento correcto, actualiza su estado de checkbox
         return {
           ...item,
-          checkbox: !item.checkbox // Cambia el estado del checkbox a su valor opuesto
+          checkbox: !item.checkbox
         };
       }
       return item;
     });
 
-    // Actualiza el estado de la lista con la nueva lista modificada
     setLista(updatedList);
   };
-
-
 
   const [casillas, setCasillas] = useState(false);
 
@@ -87,31 +70,22 @@ export default function ShowLista({ lista, setLista, setVisible, visible,}) {
     setCasillas(todosChequeados);
   }, [lista]);
 
-
   return (
     <>
-      {visible && ( // Muestra el formulario de edición solo si visible es true
+      {visible && (
         <FormArticulo
           lista={lista}
           setLista={setLista}
           setVisible={setVisible}
           editItemId={editItemId}
           setEditItemId={setEditItemId}
-        // Pasa el ID del elemento a editar al formulario
         />
       )}
 
       {lista.length > 0 ? (
         <>
           <p className='text-center font-black text-2xl justify-items-center'>Lista De Compras</p>
-          { }
-
-
-
-
-          <div className=' overflow-y-auto border-y-8 border-black  bg-indigo-700'
-            style={{ maxHeight: "280px" }}
-          >
+          <div className="overflow-y-auto border-y-8 w-11/12 mx-auto  border-black bg-indigo-700 p-4 rounded-md shadow-lg" style={{ maxHeight: "280px" }}>
             <SwipeableList>
               {lista.map((item, index) => (
                 <SwipeableListItem
@@ -119,45 +93,34 @@ export default function ShowLista({ lista, setLista, setVisible, visible,}) {
                   leadingActions={leadingActions(item.id)}
                   trailingActions={trailingActions(item.id)}
                 >
-                  <div className='grid grid-cols-3 text-xl font-semibold text-black mb-2 w-80 items-center justify-items-center mx-auto bg-gray-200 border border-gray-300 rounded-lg shadow-md'>
-                 
-
-                      <p className='text-center  py-1'>{item.articulo}</p>
-                      <p className='text-center  py-1'>{formatCurency(item.precio)}</p>
-                   
-
-                  
-                    <div className='grid grid-cols-1 text-center'>
-                       <label htmlFor={`checkbox-${item.id}`}>{index + 1}</label>
+                  <div className="grid grid-cols-[3fr_2fr_1fr] items-center text-base font-semibold text-black mb-4 w-full max-w-lg  mx-auto bg-gray-100 border border-gray-300 rounded-lg shadow-md ">
+                    <p className="text-center py-1">{item.articulo}</p>
+                    <p className="text-right border-l-2 border-gray-600 py-1">{formatCurency(item.precio)}</p>
+                    <div className="grid grid-cols-1 justify-items-end items-end pr-2 py-1 ">
+                      <label htmlFor={`checkbox-${item.id}`} className="mb-2 ">{index + 1}</label>
                       <input
                         id={`checkbox-${item.id}`}
                         type="checkbox"
-                        style={{ width: "20px", height: "20px" }}
+                        className="w-6 h-5 "
                         checked={item.checkbox}
                         onChange={() => handleCheckboxChange(item.id)}
                       />
-
                     </div>
-
-
                   </div>
                 </SwipeableListItem>
               ))}
             </SwipeableList>
           </div>
 
+          {casillas && (
+            <div className="text-center text-black place-items-center text-3xl mb-20 font-black bg-green-500 h-20  w-11/12 mx-auto mt-4 p-4 rounded-md shadow-md">
+              <p className="text-shadow">¡¡Lista Completa!!</p>
+            </div>
+          )}
         </>
       ) : (
-        <p className=' text-center font-black'>No hay elementos en la lista.</p>
+        <p className="text-center font-black text-xl mt-4">No hay elementos en la lista.</p>
       )}
-      {casillas && lista.length > 0 && (
-        <>
-          <div className='grid grid-cols-1 text-black place-items-center text-3xl mb-20 font-black bg-green-500 h-20'>
-            <p className="text-shadow">¡¡Lista Completa!!</p>
-          </div>
-        </>
-      )}
-
     </>
-  )
+  );
 }
