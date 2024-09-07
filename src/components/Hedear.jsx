@@ -1,6 +1,13 @@
 import React from 'react';
 
-export default function Header() {
+export default function Header({lista,setLista}) {
+
+  const handleVaciarLocal = () => {
+    if (window.confirm('La lista se borrará')) {
+      localStorage.removeItem('lista');
+      setLista([]);
+    }
+  };
   return (
     <div className='grid grid-cols-2 mb-2 items-center border-b-4 border-indigo-700 p-2'>
       <h1 className='text-center text-4xl text-indigo-700 font-black'>MyList</h1>
